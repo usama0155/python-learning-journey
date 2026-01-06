@@ -1,59 +1,17 @@
-# Python Learning Journey
+# Python Beginner Projects & Exercises
 
-> A structured collection of my Python learning progress — exercises, mini-projects, and problem-solving practice from beginner to intermediate.
+This repository contains **real-world Python exercises** and small projects designed to strengthen problem-solving, logic, and coding skills.  
+Each folder is organized by topic for easier navigation.
 
----
+## Topics Covered
 
-## 📚 About This Repository
+1. **Data Types (Numbers, Strings, Booleans)**
+   - Budget Tracker
+   - Temperature Converter
+   - Tip Calculator
+   - Password Strength Checker
+   - Text Analyzer
+   - Mini Number Game
 
-This repository documents my journey of learning Python in a hands-on, project-based way.  
-It contains exercises, mini-projects, and scripts organized by difficulty level, from **basic** concepts to **intermediate** topics.  
-
-The goal of this repo is to:
-
-- Track my progress over time
-- Practice Python with real exercises and projects
-- Build a personal code portfolio
-- Serve as a reference for revisiting concepts in the future
-
----
-
-## 🗂 Repository Structure
-```
-python-learning-journey/
- ├── basic/
- │    ├── exercises/
- │    ├── mini-projects/
- │    └── notes.md
- ├── intermediate/
- │    ├── exercises/
- │    ├── mini-projects/
- │    └── notes.md
- └── README.md
-```
----
-
-## 🚀 Learning Roadmap
-
-**Basic Topics:**
-
-- Variables and Data Types  
-- Operators and Expressions  
-- Conditional Statements  
-- Loops (`for`, `while`)  
-- Functions  
-- File I/O  
-- Lists, Dictionaries, Tuples, Sets  
-
-**Intermediate Topics:**
-
-- Object-Oriented Programming (Classes, Objects)  
-- Exception Handling  
-- Modules and Packages  
-- List/Dict Comprehensions  
-- Working with APIs  
-- Mini Projects combining multiple concepts  
-
-> Exercises and projects are placed in the corresponding folders. New topics and exercises will be added continuously as I progress.
-
----
+2. **Lists & Tuples**
+   - Coming Next!!!
