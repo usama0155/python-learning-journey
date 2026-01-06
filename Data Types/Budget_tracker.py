@@ -1,39 +1,53 @@
 def main():
     expenses =[{'name': 'Flour', 'type': 'Grocery', 'amount': 1000},
-               {'name': 'Rice', 'type': 'Grocery', 'amount':500}]
+               {'name': 'Rice', 'type': 'Grocery', 'amount':500},
+               {'name': 'Bus', 'type': 'Transport', 'amount': 800}]
     print("Welcome to Budget Tracker")
     print("--------------------------")
-    choise = int(input("1. Add Expense\n2. Show Expenses\n3. Total Expense\n4. Average Expense\nEnter Choise: "))
-    if choise == 1:
-        expense_name = name()
-        expense_tpye = type()
-        expense_amount = amount()
-        results = store(expenses,expense_name, expense_tpye, expense_amount)
-        
-    elif choise == 2:
-        for i, expense in enumerate(expenses):
-            items = expense['name']
-            print(f"{i+1}) {items}")
-        print(f"Total Items: {i+1}")
+    while True:
+        choice = menu()
+        if choice == 1:
+            name = expense_name()
+            types = expense_type()
+            amount = expense_amount()
+            results = store(expenses,name, types, amount)
+            
+        elif choice == 2:
+            if len(expenses) == 0:
+                print("No Expenses Yet!!!")
+            else:
+                for i, expense in enumerate(expenses,start=1):
+                    print(f"{i}) {expense['name']} | {expense['type']} | {expense['amount']}")
+                print(f"Total Items: {len(expenses)}")
 
-    elif choise == 3:
-        total_expense = 0
-        for expense in expenses:
-            total_expense += expense["amount"]
-        print(total_expense)
+        elif choice == 3:
+            if len(expenses) == 0:
+                print("No Expenses Yet!!!")
+            else:
+                total_expense = calulate_total(expenses)
+                print(f"Total Expense: {total_expense}")
 
-    elif choise == 4:
-        total_expense = 0
-        total_items = 0
-        for expense in expenses:
-            total_expense += expense["amount"]
-            total_items += 1
-        average = total_expense/total_items
-        print(f"Average Expense: {average}")
+        elif choice == 4:
+            average = calulate_average(expenses)
+            print(f"Average Expense: {average:.2f}")
+        elif choice == 5:
+            category_wise_total(expenses)
+        elif choice == 6:
+            print("Exiting...")
+            break
 
-    
+def menu():
+        try:
+            choice = int(input("\n1. Add Expense\n2. Show Expenses\n3. Total Expense\n4. Average Expense\n5. Category Wise Total \n6. Exit\nEnter choice: "))
+            if 1 <= choice <= 6:
+                return choice
+            else:
+                print("Enter Number From 1 - 6")
+        except ValueError:
+            print("Enter Valid number!")
 
-def name():
+
+def expense_name():
     while True:
         expense_name = input("Name of Expense: ")
         try:
@@ -41,7 +55,7 @@ def name():
                 return expense_name
         except ValueError:
             pass
-def type():
+def expense_type():
         while True:
             expense_type = input("Type of Expense: ")
             try:
@@ -49,7 +63,7 @@ def type():
                     return expense_type
             except ValueError:
                 pass
-def amount():
+def expense_amount():
     while True:
         expense_amount = input("Enter Amount: ")
         try:
@@ -59,33 +73,39 @@ def amount():
         except ValueError:
             print("Amount Must be Positive Digit")
             pass
-def store(expense,expense_name, expense_type, expense_amount):
-    expense["name"] = expense_name
-    expense["type"] = expense_type
-    expense["amount"] = expense_amount
-    return expense
+def store(expenses,name, types, amount):
+    expense = {
+        'name' : name,
+        'type' : types,
+        'amount' : amount
+    }
+    expenses.append(expense)
+    return expenses
 
-def calulate_total(expenses_amount):
+def calulate_total(expenses):
     total = 0
-    for expense in expenses_amount:
+    for expense in expenses:
         total += expense["amount"]
     return total
 
-def calulate_average(expenses_amount):
-    total = calulate_total(expenses_amount)
-    average = total / len(expenses_amount)
-    return average
+def calulate_average(expenses):
+    if len(expenses) == 0:
+        return 0
+    else:
+        average = calulate_total(expenses)/len(expenses)
+        return average
 
 def category_wise_total(expenses):
-    category_totals = {}
+    category_total = {}
     for expense in expenses:
-        category = expense["type"]
-        amount = expense["amount"]
-        if category in category_totals:
-            category_totals[category] += amount
+        expense_type = expense['type']
+        expense_amount = expense['amount']
+        if expense_type in category_total:
+            category_total[expense_type] += expense_amount
         else:
-            category_totals[category] = amount
-    return category_totals
+            category_total[expense_type] = expense_amount
+    for expense_type,expense_amount in category_total.items():
+        print(f"{expense_type} : {expense_amount}")
     
 
     
