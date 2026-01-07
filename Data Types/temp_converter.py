@@ -20,21 +20,25 @@ def main():
 
 def user_input():
     while True:
-        user_in = input("Enter Temperature(Example: 25 C): ")
+        user_in = input("Enter Temperature: ").strip().upper()
         if not user_in:
             print("Input Can't be empty!!!")
             continue
-        parts = user_in.split()
-        if len(parts) != 2:
-            print("Please enter in format: value unit (ex: 25 C)")
-            continue
-        number, unit = parts
+        number_str = ""
+        unit_str = ""
+        for char in user_in:
+            if char.isdigit() or char == ".":
+                number_str += char
+            else:
+                unit_str += char
+
 
         try:
-            number = float(number)
+            number = float(number_str)
         except ValueError:
             print("Temperature Must be a number!!!")
             continue
+        unit = unit_str
         return number,unit
     
 
